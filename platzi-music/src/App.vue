@@ -37,6 +37,11 @@ export default {
       var diff = hoy.getTime() - miFecha.getTime()
       return Math.floor(diff / (1000 * 60 * 60 * 24 * 365))
     }
+  },
+  watch: {
+    name (newVal, oldVal) {
+      console.log(newVal, oldVal)
+    }
   }
 }
 </script>
