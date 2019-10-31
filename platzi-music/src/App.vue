@@ -1,8 +1,8 @@
 <template lang="pug">
   #app
     pm-header
-    pm-notification(v-show="showNotification")
-      p(slot="body") No se encontraron resultados!
+    pm-notification(v-show="showNotification", :notification="notify")
+      //- p(slot="body") No se encontraron resultados!
     pm-loader(v-show="isLoading")
     section.section(v-show="!isLoading")
       nav.nav
@@ -40,7 +40,8 @@ export default {
       tracks: [],
       isLoading: false,
       selectedTrack: '',
-      showNotification: false
+      showNotification: false,
+      notify: {}
     }
   },
   computed: {
@@ -64,7 +65,19 @@ export default {
       trackService.search(this.searchQuery)
         .then(
           res => {
-            this.showNotification = res.tracks.total === 0
+            if (res.tracks.total === 0) {
+              this.notify = {
+                message: 'Algo anduvo mal',
+                type: 'is-danger'
+              }
+            } else {
+              this.notify = {
+                message: 'Se encontraron resultados',
+                type: 'is-success'
+              }
+            }
+            console.log(this.notify)
+            this.showNotification = true
             this.tracks = res.tracks.items
             this.isLoading = false
           })
