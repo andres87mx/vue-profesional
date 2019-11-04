@@ -3,10 +3,15 @@
         .hero-head
             header.nav
                 .container
-                    .nav-left
-                        .nav-item
-                            strong Platzi Music
-                    .nav-right.nav-menu
+                  .navbar
+                    .navbar-brand
+                      .navbar-item
+                        strong Platzi Music 🎵
+                    .navbar-end
+                      .navbar-item
+                        router-link.nav-item(to="/") Buscar
+                      .navbar-item
+                        router-link.nav-item(to="about") Nosotros
         .hero-body
             .container.has-text-centered
                 h1.title Platzi Music
