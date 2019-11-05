@@ -15,7 +15,7 @@
       .container.results
         .columns.is-multiline
           .column.is-one-quarter(v-for="t in tracks")
-            pm-track(:track="t", v-on:select="setSelectedTrack", v-bind:class="{ 'is-active': t.id == selectedTrack }")
+            pm-track(v-blur="t.preview_url", :track="t", v-on:select="setSelectedTrack", v-bind:class="{ 'is-active': t.id == selectedTrack }")
 </template>
 
 <script>
