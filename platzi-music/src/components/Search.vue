@@ -1,8 +1,10 @@
 <template lang="pug">
   #main
-    pm-notification(v-show="showNotification", :notification="notify")
+    transition(name="move")
+      pm-notification(v-show="showNotification", :notification="notify")
       //- p(slot="body") No se encontraron resultados!
-    pm-loader(v-show="isLoading")
+    transition(name="move")
+      pm-loader(v-show="isLoading")
     section.section(v-show="!isLoading")
       nav.nav
         .container
@@ -13,8 +15,8 @@
         p
           small {{ searchMessage }}
       .container.results
-        .columns.is-multiline
-          .column.is-one-quarter(v-for="t in tracks")
+        transition-group(name="move" tag="div" class="columns is-multiline")
+          .column.is-one-quarter(v-for="t in tracks", :key="t.id")
             pm-track(v-blur="t.preview_url", :track="t", v-on:select="setSelectedTrack", v-bind:class="{ 'is-active': t.id == selectedTrack }")
 </template>
 
