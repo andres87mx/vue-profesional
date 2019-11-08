@@ -15,7 +15,7 @@
         p
           small {{ searchMessage }}
       .container.results
-        transition-group(name="move" tag="div" class="columns is-multiline")
+        transition-group(name="move2" tag="div" class="columns is-multiline")
           .column.is-one-quarter(v-for="t in tracks", :key="t.id")
             pm-track(v-blur="t.preview_url", :track="t", v-on:select="setSelectedTrack", v-bind:class="{ 'is-active': t.id == selectedTrack }")
 </template>
